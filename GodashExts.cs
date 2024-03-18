@@ -89,4 +89,20 @@ public static class GodashExts
 
         return fch;
     }
+
+    public static void CallGroup(this SceneTree tree, StringName group, Callable callable)
+    {
+        foreach (var node in tree.GetNodesInGroup(group))
+        {
+            callable.Call(node);
+        }
+    }
+
+    public static void CallGroup(this SceneTree tree, StringName group, Action<Node> callable)
+    {
+        foreach (var node in tree.GetNodesInGroup(group))
+        {
+            callable(node);
+        }
+    }
 }
